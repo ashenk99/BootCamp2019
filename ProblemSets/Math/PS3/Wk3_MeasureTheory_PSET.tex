@@ -1,0 +1,143 @@
+\documentclass[UTF8]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage[shortlabels]{enumitem}
+\usepackage[T1]{fontenc}
+\newenvironment{tightcenter}{%
+  \setlength\topsep{0pt}
+  \setlength\parskip{0pt}
+  \begin{center}
+}{%
+  \end{center}
+}
+\setlength\topmargin{0pt}
+\addtolength\topmargin{-\headheight}
+\addtolength\topmargin{-\headsep}
+\setlength\oddsidemargin{0pt}
+\setlength\textwidth{\paperwidth}
+\addtolength\textwidth{-2in}
+\setlength\textheight{\paperheight}
+\addtolength\textheight{-2in}
+\usepackage{layout}
+\setlength\parindent{6pt}
+\begin{document}
+\title{%
+ \textbf{Measure Theory Problem Set}  \\
+ \large OSE Bootcamp 2019 Week 3 }
+\author{Alan Shenkerman } 
+\date{Monday, July 22, 2019}
+\maketitle
+
+\textbf{Exercise 1.3}
+\medskip
+\begin{enumerate}
+\item Not an algebra. The complement of an open set is closed, so for example, if $A = (-\infty, 3)$ then $A^c = [3, \infty) \notin G_1$.
+\item We claim $G_2$ is an algebra, but not a $\sigma$-algebra. To see $G_2$ is an algebra, note that by definition $G_2$ is closed under finite union. Moreover, note that \\ 
+$$(a,b]^c  = (-\infty, a] \cup (b, \infty)\in G_2$$ 
+$$(-\infty, b]^c = (b, \infty) \in G_2$$ 
+$$(a, \infty)^c = [-\infty, a] \in G_2,$$ 
+and clearly finite unions of such intervals will have their complements in $G_2$ as well, because their complements are just finite unions of the exact same types of intervals. \\
+Note, however, that $G_2$ is not a sigma algebra because by definition it does not contain countable unions of such intervals.
+\item This is a $\sigma$ algebra. As in $G_2$, the set is closed under complements and by definition closed under countably infinite unions.
+\end{enumerate}
+\medskip
+\textbf{Exercise 1.7} \\ 
+Suppose $A$ was a 'smaller' $\sigma$-algebra than $\{\emptyset, X\}$. Since by definition $\emptyset \in A$ then we must have $A = \{\emptyset\}$ but then $\emptyset^c = X \notin A$, contradiction. Thus $\{\emptyset, X\}$ is minimal.  \\ \\
+Suppose $B$ is 'larger' than $\mathcal P(X)$. Then $\exists$ a set $S$ such that $S \in B$ and $S \notin \mathcal P(X)$ since a $\sigma$-algebra is a family of subsets of the space $X$, $S \subset X$, which automatically implies $S \subset \mathcal P(X)$ by definition, contradiction. 
+
+\medskip
+\noindent \textbf{Exercise 1.10} \\ 
+Suppose a set $S \in \bigcap\limits_{\alpha} S_{\alpha}$, we must have $\emptyset \in \bigcap\limits_{\alpha} S_{\alpha}$ as the empty set is in each $\sigma$-algebra by definition. Moreover, we have that $S \in S_{\alpha} \forall \alpha$. Since each $S_{\alpha}$ is a $\sigma$-algebra, we see that $S^c \in S_{\alpha} \forall \alpha$ and thus $S^c$ is in the intersection. \\ \\
+Next, take countably infinite unions of $A_i$ such that $A_i \in \bigcap\limits_{\alpha} S_{\alpha}$, then $A_i \in S_{\alpha} \forall \alpha$. Again by the fact that $S_{\alpha}$ are $\sigma$-algebras, we have that:
+$$\bigcup\limits_{i=1}^{\infty} A_i \in S_{\alpha} \forall \alpha \implies \bigcup\limits_{i=1}^{\infty} A_i \in \bigcap\limits_{\alpha} S_{\alpha},$$ which completes the proof.
+
+\medskip
+\noindent \textbf{Exercise 1.22} \\
+First we show monotonicity. Take $C$ such that $B = A \cup C$ where $A \cap C = \{\emptyset\}$. Then we have:
+$$\mu(B) = \mu(A \cup C) = \mu(A) + \mu(C) \geq \mu(A),$$
+which proves the result. \\
+Next we show countable subadditivity. For $\bigcup\limits_{i=1}^{\infty} A_i$, construct a sequence of sets $B_i$ such that: $B_1 = A_1, B_2 = A_2 \backslash A_1, \dots B_n = A_n \backslash A_{n-1}  \backslash  \dots A_1$. By construction, these $B_i$ are disjoint, $B_i \subset A_i$ and moreover, their union is equivalent to the union of the $A_i$. We have:
+$$ \mu(\bigcup\limits_{i=1}^{\infty} A_i) = \sum\limits_{i=1}^{\infty} \mu(B_i) \leq \sum\limits_{i=1}^{\infty} \mu(A_i),$$ which completes the proof.
+
+\medskip
+\noindent \textbf{Exercise 1.23} \\ 
+
+Note $\lambda(\emptyset) = \mu(\emptyset \cap B) = \mu(\emptyset) = 0.$ Next take $\{A_i\}_{i=1}^\infty \subset S$ such that $A_i \cap A_j = \emptyset$. 
+We see that
+\begin{align*}
+\lambda(\bigcup\limits_{i=1}^{\infty} A_i) &= \mu(\bigcup\limits_{i=1}^{\infty} A_i \cap B) \\
+&= \mu(\bigcup\limits_{i=1}^{\infty}(A_i \cap B)) \\
+&= \sum\limits_{i=1}^{\infty} \mu(A_i \cap B) \\
+&= \sum\limits_{i=1}^{\infty} \lambda(A_i ),
+\end{align*}
+which completes the proof.
+
+\medskip
+\noindent \textbf{Exercise 1.26} \\ 
+
+Note that $A_1 = \bigcap\limits_{i=1}^{\infty} A_i \cup A_1 \backslash \bigcap\limits_{i=1}^{\infty} A_i$. Taking the measure on both sides, we get:
+\begin{align*}
+\mu (A_1) &= \mu (\bigcap\limits_{i=1}^{\infty} A_i) +  \mu (A_1 \backslash \bigcap\limits_{i=1}^{\infty} A_i) \\
+&= \mu(\bigcap\limits_{i=1}^{\infty} A_i) + \mu(\bigcup\limits_{n=1}^{\infty} A_1 \backslash A_n)  \\
+&= \lim\limits_{n \to \infty} \mu(A_1 \backslash A_n) \\
+&= \lim\limits_{n \to \infty} (\mu(A_1) - \mu(A_n)),
+\end{align*}
+which implies the result.
+
+\medskip
+\noindent \textbf{Exercise 2.10} \\
+Note that $B = (B \cap E) \cup (B \cap E^c)$ and by subadditivity, 
+$$\mu^*(B) \leq \mu^*(B \cap E) + \mu^*(B \cap E^c), $$ so equality follows in the theorem condition.
+
+\medskip
+\noindent \textbf{Exercise 2.14} \\
+
+Since $\sigma(O)$ is a sigma algebra, for any open set $S \in \sigma(O)$, $S^c \in  \sigma(O)$, note $S^c$ is closed. Moreover, since $ \sigma(O)$ is closed under countable union, it contains unions of all closed/open sets in $\mathbb{R}$. Now consider $ \sigma(A)$, which is nearly $A$ but with the addition of countable unions of these intervals. Any countable intersection of intervals is an intersection of intervals is an intersection of open and closed sets in $\mathbb{R}$. Moreover, any open/closed set in $\mathbb{R}$ is an intersection of countably many intervals, this implies that there is a bijection between  $\sigma(O)$ and $ \sigma(A)$, so they are equivalent. Caratheodory implies the result. 
+
+\medskip
+\noindent \textbf{Exercise 3.1} \\
+Note the Lebesgue measure of a point is 0, as a point is a trivial interval. If we have a countable subset of $\mathbb{R}$, this is just a countable union of disjoint points $P_i$, thus by definition of a measure:
+$$\mu(\bigcup\limits_{i=1}^{\infty} P) = \sum\limits_{i=1}^{\infty} \mu(P_i) = 0.$$
+
+\medskip
+\noindent \textbf{Exercise 3.7} \\
+We can replace w/ less than or equal to as a single point has measure zero in $\mathbb{R}$. Note that if $\{x\in X : f(x) < a \} \in M$ then $\{x \in X: f(x) < a\}^c \in M$ as $M$ is a sigma-algebra, thus we get the greater than or equal to case and from previous logic we see that we also get the greater than case.
+
+\medskip
+\noindent \textbf{Exercise 3.10} \\ 
+For $f+g$, $f*g$, $|f|$, take: $F(x,y) = x+y$; $F(x,y) = x*y$;  $F(x,y) = \sqrt{x^2} = |x|$ note all of these are continuous, so we see that by (4), each of these functions are measureable. \\
+
+Since we have the sup and inf condition, the functions:
+$$F(x,y) = \frac{1}{2}(x + y + |x-y|) = max(x,y)$$ and 
+$$F(x,y) = \frac{1}{2}(x + y - |x-y|) = min(x,y)$$ are well defined and clearly continuous, and so max and min are measurable. These statements imply condition 1. 
+
+\medskip
+\noindent \textbf{Exercise 3.17} \\
+Suppose $f \leq M$, $f \geq M$ for some $M  \in \mathbb{R}$. For any x, since we have $f \in [-M, M]$, for every $\epsilon$ there exists $N$ such that $$\frac{1}{2^n} <\epsilon; \quad n \geq N.$$ We can construct \textit{finitely} many $E_i$ (same $E_i$ as in the constructive proof), that cover all of $f$, in that the union of the $E_i$ is the entire real line, as we can partition the range into finitely many intervals, none of which contains infinity. Choose an $N$ that fits the bound for $\epsilon$, and then by the construction of $s_n$ we see that $$|f(x) - s_N(x)| < \epsilon$$ for all $x$, which implies the uniform convergence of $s_n \to f$. 
+
+\medskip
+\noindent \textbf{Exercise 4.13} \\
+If $|f| < M$ then we see that $f^+ < M, f^- > -M$, so both are finite on $E.$ Thus from the definition of the Lebesgue integral we find that we are taking the $sup$ over simple measurable bounded functions for both $f^+$ and $f^-$, which are necessarily bounded and thus $\int\limits_{E} f^+ d\mu < \infty$ and $\int\limits_{E} f^- d\mu < \infty$, which by definition implies that $f$ is integrable. 
+
+\medskip
+\noindent \textbf{Exercise 4.14} \\
+Suppose otherwise, then there exists some $E_\alpha \subset E$ such that $\mu(E_\alpha) >0$ and where $f(x) = \infty$. Consider the Lebesgue integral on $E_\alpha$. For any $a \in \mathbb{R},$ take an $x \in E_\alpha$ such that $f(x) > a$. Then by proposition 4.5 we have that:
+
+$$a\mu(E_\alpha) \leq \int\limits_E f d\mu$$. Since $\mu(E_\alpha)$ is greater than 0, and for any $a$ there exists $x \in E_\alpha$ such that $f(x) > a$, we can take the $sup$ of both sides, to find that the Lebesgue integral is infinite. This is a contradiction, hence the result.
+
+\medskip
+\noindent \textbf{Exercise 4.15}
+Note that since $f \leq g$, it must be true that:
+$$\{s: 0 \leq s \leq f^+\} \subset \{s: 0 \leq s \leq g^+\},$$
+a similar argument holds true for $f^-$ and $g^-$. Then the result follows from Proposition 4.7.
+
+\medskip
+\noindent \textbf{Exercise 4.16} \\
+Observe that 
+$$\int\limits_A f^+ d\mu = sup\{\int\limits_A  s d\mu, 0 \leq s \leq f\} \leq sup\{\int\limits_E  s d\mu, 0 \leq s \leq f\} < \infty,$$ where the inequality comes from the fact that $A \subset E$. Similarly $f^-$ is finite, so we are done.
+
+
+
+
+\end{document}

@@ -1,0 +1,4 @@
+C b A
+f E d
+k j i
+3 2 1
